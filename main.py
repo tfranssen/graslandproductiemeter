@@ -31,6 +31,9 @@ class Window(tk.Tk):
         self.lastLon = ""
         self.lastGPSFix = ""
         self.measurementActive = False
+        self.sensorData = [[0,0,0,0,0,0,0,0,0]]
+        self.debug = True 
+
         self.df = pd.DataFrame(columns=['lat', 'lon', 'distance', 'laser1', 'laser2', 'laser3', 'laser4', 'laser5', 'laser6'])
         self.activeFrame = "rightFrame"
 
@@ -202,83 +205,105 @@ class Window(tk.Tk):
         self.activeFrame = "rightFrame"
      
     def measure(self,event):
-        if self.measurementActive == False:
-            # If measurement is not active, start measurement
-            if self.activeFrame == "chartFrame":
-                self.chartFrame.pack_forget()
-                self.rightFrame.pack(side=tk.RIGHT)
-                self.activeFrame = "rightFrame"
-            self.arduino.write(b"r")
-            self.lastDistance = "0.000"
-            # make df empty
-            self.df = pd.DataFrame(columns=['lat', 'lon', 'distance', 'laser1', 'laser2', 'laser3', 'laser4', 'laser5', 'laser6'])
-            # Append a zero to df so that the chart will start at 0
-            self.df = self.df.append({'lat': self.lastLat, 'lon': self.lastLon, 'distance': 0, 'laser1': 0, 'laser2': 0, 'laser3': 0, 'laser4': 0, 'laser5': 0, 'laser6': 0}, ignore_index=True)
-            self.measurementActive = True
-            self.rechthoekKleinLabel2Text["text"] = "Stop"
-        else:
-            # If measurement is active, stop measurement
-            self.arduino.write(b"s")
+        try:
+            if self.measurementActive == False:
+                # If measurement is not active, start measurement
+                if self.activeFrame == "chartFrame":
+                    self.chartFrame.pack_forget()
+                    self.rightFrame.pack(side=tk.RIGHT)
+                    self.activeFrame = "rightFrame"
+                self.arduino.write(b"r")
+                self.lastDistance = "0.000"
+                self.sensorData = [[self.lastLat, self.lastLon,0,0,0,0,0,0,0]]
+                self.measurementActive = True
+                self.rechthoekKleinLabel2Text["text"] = "Stop"
+            else:
+                # If measurement is active, stop measurement
+                self.measurementActive = False
+                if len(self.sensorData) > 2 or self.debug == True:
+                    self.rechthoekKleinLabel2Text["text"] = "Saving..."
+                    self.root.update()     
+                    self.df = pd.DataFrame(self.sensorData, columns=['lat', 'lon', 'distance', 'laser1', 'laser2', 'laser3', 'laser4', 'laser5', 'laser6'])
+                    # make columns lat, lon and distance as float
+                    self.df['lat'] = self.df['lat'].astype(float)
+                    self.df['lon'] = self.df['lon'].astype(float)
+                    self.df['distance'] = self.df['distance'].astype(float)
+                    # round lat, lon and distance to 4 decimals
+                    self.df = self.df.round(4)
+                    # sort df by distance
+                    self.df = self.df.sort_values(by=['distance'])
+                    # reset index
+                    self.df = self.df.reset_index(drop=True)
+                    now = datetime.now()
+                    self.df.to_csv(absolute_path + "/measurementData/data_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".csv", index=False)
+                    self.labelSaved["text"] = "Saved as: data_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".csv"
+                    # if debug is True, load test data from CSV to dataframe
+                    if self.debug == True:
+                        self.df = pd.read_csv(absolute_path + "/testData.csv")
+                    # Create new dataframe with distance from 0 to last distance with 0.0001 steps
+                    x = np.arange(0.0,self.df['distance'].iloc[-1],0.0001) 
+                    df_distance = pd.DataFrame(data = x, columns=["distance"])
+                    df_distance = df_distance.round(4)
+                    # Merge df_distance with self.df on distance
+                    self.df = pd.merge(df_distance, self.df, on='distance', how='left')
+                    # add missing values using ffill
+                    self.df = self.df.fillna(method='ffill')
+
+                    # Calculate from dataframe percentage of laser 1 to 6 where values are 1 
+                    # Count number of rows where laser 1 to 6 is 1
+                    # Divide by total number of rows
+                    # Multiply by 100 to get percentage
+                    laser1Percentage = (self.df['laser1'].sum() / self.df['laser1'].count()) * 100
+                    laser2Percentage = (self.df['laser2'].sum() / self.df['laser2'].count()) * 100
+                    laser3Percentage = (self.df['laser3'].sum() / self.df['laser3'].count()) * 100
+                    laser4Percentage = (self.df['laser4'].sum() / self.df['laser4'].count()) * 100
+                    laser5Percentage = (self.df['laser5'].sum() / self.df['laser5'].count()) * 100
+                    laser6Percentage = (self.df['laser6'].sum() / self.df['laser6'].count()) * 100
+
+                    # Create bar chart with the percentages per laser and save as png
+                    # set size of chart
+                    plt.figure(figsize=(6,4))
+                    plt.bar(["Laser 1", "Laser 2", "Laser 3", "Laser 4", "Laser 5", "Laser 6"], [laser1Percentage, laser2Percentage, laser3Percentage, laser4Percentage, laser5Percentage, laser6Percentage]) 
+                    plt.ylabel("Percentage")
+                    plt.xlabel("Laser")
+                    plt.title('Percentage of laser that is blocked')
+                    plt.savefig(absolute_path + "/measurementData/chart_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".png")
+                    plt.close()
+                    self.chartImage = Image.open(absolute_path + "/measurementData/chart_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".png")
+                    self.chartImage = ImageTk.PhotoImage(self.chartImage)
+                    self.chartImageLabel.configure(image=self.chartImage)
+                    self.chartImageLabel.image = self.chartImage
+                    self.rightFrame.pack_forget()
+                    self.chartFrame.pack(side=tk.RIGHT)
+                    self.activeFrame = "chartFrame"             
+                self.rechthoekKleinLabel2Text["text"] = "Measure"
+        except Exception as e:
+            print("Something went wrong when starting or stopping a measurement..")
+            print(e)
             self.measurementActive = False
-            self.rechthoekKleinLabel2Text["text"] = "Saving..."
-            self.root.update()            
-            # Save df to csv including date and time in filename
-            now = datetime.now()
-            self.df.to_csv(absolute_path + "/data_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".csv", index=False)
-            self.labelSaved["text"] = "Saved as: data_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".csv"
-            x = np.arange(0.0,self.df['distance'].iloc[-1],0.0001) 
-            df_distance = pd.DataFrame(data = x, columns=["distance"])
-            df_distance = df_distance.round(4)
-
-            # Merge df_distance with self.df on distance
-            self.df = pd.merge(df_distance, self.df, on='distance', how='left')
-            # add missing values using ffill
-            self.df = self.df.fillna(method='ffill')
-            # Make chart with matplotlib from df and save to png, x axis is distance, y axis is laser. Plot each laser as a line
-            # Make x axis labels only every 250 cm if distance is in meters
-            # Make y axis start at 0, set ymin = 0 and ymax = 1.1, y = 0 should alway be at the bottom
-
-            plt.plot(self.df['distance'], self.df['laser1'], label="Laser 1")
-            plt.plot(self.df['distance'], self.df['laser2'], label="Laser 2")
-            plt.plot(self.df['distance'], self.df['laser3'], label="Laser 3")
-            plt.plot(self.df['distance'], self.df['laser4'], label="Laser 4")
-            plt.plot(self.df['distance'], self.df['laser5'], label="Laser 5")
-            plt.plot(self.df['distance'], self.df['laser6'], label="Laser 6")
-            plt.xlabel('Distance (m)')
-            plt.xticks(self.df['distance'][::2500])
-            #plt.ylim(0, 6.1)
-            plt.ylabel('Laser')
-            plt.legend()
-            # set width to 600 pixels and height to 300 pixels
-            plt.gcf().set_size_inches(6, 5)
-            plt.savefig(absolute_path + "/chart_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".png")
-            plt.clf()
-
             self.rechthoekKleinLabel2Text["text"] = "Measure"
-            chartImage = Image.open(absolute_path + "/chart_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".png")
-            chartImage = ImageTk.PhotoImage(chartImage)
-            self.chartImageLabel.configure(image=chartImage)
-            self.chartImageLabel.image = chartImage
-            self.rightFrame.pack_forget()
-            self.chartFrame.pack(side=tk.RIGHT)
-            self.activeFrame = "chartFrame"
+
     async def readArduino(self):
         while True:
             if (self.arduino.in_waiting > 0):
-                raw = self.arduino.read_until().decode("utf-8")
-                # check if first character is ':'
-                if raw[0] == ":":
-                    distance = raw.split(":")[1].strip()
-                    self.lastDistance = distance
-                elif raw[0] == "1" or raw[0] == "0":
-                    #Split string at space and add the first 6 elements to list
-                    data = raw.split(" ")[0:6]
-                    self.lastSensorReading = data
-                    distance = raw.split(" ")[6].strip()
-                    self.lastDistance = distance
-                    # laser1 is self.lastSensorReading[5]
-                    self.df = self.df.append({'lat': self.lastLat, 'lon': self.lastLon, 'distance': float(self.lastDistance), 'laser1': self.lastSensorReading[5], 'laser2': self.lastSensorReading[4], 'laser3': self.lastSensorReading[3], 'laser4': self.lastSensorReading[2], 'laser5': self.lastSensorReading[1], 'laser6': self.lastSensorReading[0]}, ignore_index=True)
-            await asyncio.sleep(0.001)
+                try:
+                    raw = self.arduino.read_until().decode("utf-8")
+                    # check if first character is ':'
+                    if raw[0] == ":":
+                        distance = raw.split(":")[1].strip()
+                        self.lastDistance = distance
+                    elif raw[0] == "1" or raw[0] == "0":
+                        #Split string at space and add the first 6 elements to list
+                        data = raw.split(" ")[0:6]
+                        self.lastSensorReading = data
+                        distance = raw.split(" ")[6].strip()
+                        self.lastDistance = distance
+                        if self.measurementActive == True:
+                            self.sensorData.append([self.lastLat, self.lastLon, self.lastDistance, data[0], data[1], data[2], data[3], data[4], data[5]])
+                except Exception as e:
+                    print("Something went wrong when reading and parsing arduino code")
+                    print(e)
+            await asyncio.sleep(0.00001)
 
     #Read GPS
     async def readGPS(self):

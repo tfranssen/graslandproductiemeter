@@ -5363,3 +5363,1012 @@ More info: http://www.karlrunge.com/x11vnc/faq.html#faq-client-caching
 15/08/2023 23:38:04 cursor_noshape_updates_clients: 0
 15/08/2023 23:38:05 cursor_noshape_updates_clients: 0
 16/08/2023 00:00:32 idle keyboard:   turning X autorepeat back on.
+caught signal: 15
+16/08/2023 00:25:08 deleted 32 tile_row polling images.
+extra[1] signal: -1
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
+      after 2412789 requests (2412789 known processed) with 0 events remaining.
+###############################################################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  **  WARNING  **  WARNING  **  WARNING  **  WARNING  **   @#
+#@                                                           @#
+#@        YOU ARE RUNNING X11VNC WITHOUT A PASSWORD!!        @#
+#@                                                           @#
+#@  This means anyone with network access to this computer   @#
+#@  may be able to view and control your desktop.            @#
+#@                                                           @#
+#@ >>> If you did not mean to do this Press CTRL-C now!! <<< @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  You can create an x11vnc password file by running:       @#
+#@                                                           @#
+#@       x11vnc -storepasswd password /path/to/passfile      @#
+#@  or   x11vnc -storepasswd /path/to/passfile               @#
+#@  or   x11vnc -storepasswd                                 @#
+#@                                                           @#
+#@  (the last one will use ~/.vnc/passwd)                    @#
+#@                                                           @#
+#@  and then starting x11vnc via:                            @#
+#@                                                           @#
+#@      x11vnc -rfbauth /path/to/passfile                    @#
+#@                                                           @#
+#@  an existing ~/.vnc/passwd file from another VNC          @#
+#@  application will work fine too.                          @#
+#@                                                           @#
+#@  You can also use the -passwdfile or -passwd options.     @#
+#@  (note -passwd is unsafe if local users are not trusted)  @#
+#@                                                           @#
+#@  Make sure any -rfbauth and -passwdfile password files    @#
+#@  cannot be read by untrusted users.                       @#
+#@                                                           @#
+#@  Use x11vnc -usepw to automatically use your              @#
+#@  ~/.vnc/passwd or ~/.vnc/passwdfile password files.       @#
+#@  (and prompt you to create ~/.vnc/passwd if neither       @#
+#@  file exists.)  Under -usepw, x11vnc will exit if it      @#
+#@  cannot find a password to use.                           @#
+#@                                                           @#
+#@                                                           @#
+#@  Even with a password, the subsequent VNC traffic is      @#
+#@  sent in the clear.  Consider tunnelling via ssh(1):      @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/#tunnelling            @#
+#@                                                           @#
+#@  Or using the x11vnc SSL options: -ssl and -stunnel       @#
+#@                                                           @#
+#@  Please Read the documention for more info about          @#
+#@  passwords, security, and encryption.                     @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/faq.html#faq-passwd    @#
+#@                                                           @#
+#@  To disable this warning use the -nopw option, or put     @#
+#@  'nopw' on a line in your ~/.x11vncrc file.               @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+###############################################################
+16/08/2023 11:46:19 x11vnc version: 0.9.13 lastmod: 2011-08-10  pid: 15029
+16/08/2023 11:46:19 Using X display :0
+16/08/2023 11:46:19 rootwin: 0x1ac reswin: 0x2e00001 dpy: 0xa5da3f40
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 ------------------ USEFUL INFORMATION ------------------
+16/08/2023 11:46:19 X DAMAGE available on display, using it for polling hints.
+16/08/2023 11:46:19   To disable this behavior use: '-noxdamage'
+16/08/2023 11:46:19 
+16/08/2023 11:46:19   Most compositing window managers like 'compiz' or 'beryl'
+16/08/2023 11:46:19   cause X DAMAGE to fail, and so you may not see any screen
+16/08/2023 11:46:19   updates via VNC.  Either disable 'compiz' (recommended) or
+16/08/2023 11:46:19   supply the x11vnc '-noxdamage' command line option.
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 Wireframing: -wireframe mode is in effect for window moves.
+16/08/2023 11:46:19   If this yields undesired behavior (poor response, painting
+16/08/2023 11:46:19   errors, etc) it may be disabled:
+16/08/2023 11:46:19    - use '-nowf' to disable wireframing completely.
+16/08/2023 11:46:19    - use '-nowcr' to disable the Copy Rectangle after the
+16/08/2023 11:46:19      moved window is released in the new position.
+16/08/2023 11:46:19   Also see the -help entry for tuning parameters.
+16/08/2023 11:46:19   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+16/08/2023 11:46:19   repaint the screen, also see the -fixscreen option for
+16/08/2023 11:46:19   periodic repaints.
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 XFIXES available on display, resetting cursor mode
+16/08/2023 11:46:19   to: '-cursor most'.
+16/08/2023 11:46:19   to disable this behavior use: '-cursor arrow'
+16/08/2023 11:46:19   or '-noxfixes'.
+16/08/2023 11:46:19 using XFIXES for cursor drawing.
+16/08/2023 11:46:19 GrabServer control via XTEST.
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 Scroll Detection: -scrollcopyrect mode is in effect to
+16/08/2023 11:46:19   use RECORD extension to try to detect scrolling windows
+16/08/2023 11:46:19   (induced by either user keystroke or mouse input).
+16/08/2023 11:46:19   If this yields undesired behavior (poor response, painting
+16/08/2023 11:46:19   errors, etc) it may be disabled via: '-noscr'
+16/08/2023 11:46:19   Also see the -help entry for tuning parameters.
+16/08/2023 11:46:19   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+16/08/2023 11:46:19   repaint the screen, also see the -fixscreen option for
+16/08/2023 11:46:19   periodic repaints.
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 XKEYBOARD: number of keysyms per keycode 7 is greater
+16/08/2023 11:46:19   than 4 and 51 keysyms are mapped above 4.
+16/08/2023 11:46:19   Automatically switching to -xkb mode.
+16/08/2023 11:46:19   If this makes the key mapping worse you can
+16/08/2023 11:46:19   disable it with the "-noxkb" option.
+16/08/2023 11:46:19   Also, remember "-remap DEAD" for accenting characters.
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 X FBPM extension not supported.
+16/08/2023 11:46:19 X display is capable of DPMS.
+16/08/2023 11:46:19 --------------------------------------------------------
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 Default visual ID: 0x21
+16/08/2023 11:46:19 Read initial data from X display into framebuffer.
+16/08/2023 11:46:19 initialize_screen: fb_depth/fb_bpp/fb_Bpl 24/32/4096
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 X display :0 is 32bpp depth=24 true color
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 Autoprobing TCP port 
+16/08/2023 11:46:19 Autoprobing selected TCP port 5900
+16/08/2023 11:46:19 Autoprobing TCP6 port 
+16/08/2023 11:46:19 Autoprobing selected TCP6 port 5900
+16/08/2023 11:46:19 listen6: bind: Address already in use
+16/08/2023 11:46:19 Not listening on IPv6 interface.
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 Xinerama is present and active (e.g. multi-head).
+16/08/2023 11:46:19 Xinerama: number of sub-screens: 1
+16/08/2023 11:46:19 Xinerama: no blackouts needed (only one sub-screen)
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 fb read rate: 90 MB/sec
+16/08/2023 11:46:19 fast read: reset -wait  ms to: 10
+16/08/2023 11:46:19 fast read: reset -defer ms to: 10
+16/08/2023 11:46:19 The X server says there are 10 mouse buttons.
+16/08/2023 11:46:19 screen setup finished.
+16/08/2023 11:46:19 
+16/08/2023 11:46:19 WARNING: You are running x11vnc WITHOUT a password.  See
+16/08/2023 11:46:19 WARNING: the warning message printed above for more info.
+16/08/2023 11:46:19 
+
+The VNC desktop is:      graslandKar:0
+PORT=5900
+
+******************************************************************************
+Have you tried the x11vnc '-ncache' VNC client-side pixel caching feature yet?
+
+The scheme stores pixel data offscreen on the VNC viewer side for faster
+retrieval.  It should work with any VNC viewer.  Try it by running:
+
+    x11vnc -ncache 10 ...
+
+One can also add -ncache_cr for smooth 'copyrect' window motion.
+More info: http://www.karlrunge.com/x11vnc/faq.html#faq-client-caching
+
+16/08/2023 11:46:22 Got connection from client 172.28.0.2
+16/08/2023 11:46:22   other clients:
+16/08/2023 11:46:23 Normal socket connection
+16/08/2023 11:46:23 Disabled X server key autorepeat.
+16/08/2023 11:46:23   to force back on run: 'xset r on' (3 times)
+16/08/2023 11:46:23 incr accepted_client=1 for 172.28.0.2:59977  sock=11
+16/08/2023 11:46:23 Client Protocol Version 3.8
+16/08/2023 11:46:23 Protocol version sent 3.8, using 3.8
+16/08/2023 11:46:23 rfbProcessClientSecurityType: executing handler for type 1
+16/08/2023 11:46:23 rfbProcessClientSecurityType: returning securityResult for client rfb version >= 3.8
+16/08/2023 11:46:23 client useCopyRect: 172.28.0.2 0
+16/08/2023 11:46:23 client_set_net: 172.28.0.2  0.0266
+16/08/2023 11:46:23 created   xdamage object: 0x2e00024
+16/08/2023 11:46:23 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000018)
+16/08/2023 11:46:23 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000016)
+16/08/2023 11:46:23 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000015)
+16/08/2023 11:46:23 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x0000000F)
+16/08/2023 11:46:23 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0xFFFFFEC6)
+16/08/2023 11:46:23 Enabling full-color cursor updates for client 172.28.0.2
+16/08/2023 11:46:23 Enabling NewFBSize protocol extension for client 172.28.0.2
+16/08/2023 11:46:23 Using ZRLE encoding for client 172.28.0.2
+16/08/2023 11:46:23 Pixel format for client 172.28.0.2:
+16/08/2023 11:46:23   8 bpp, depth 6
+16/08/2023 11:46:23   true colour: max r 3 g 3 b 3, shift r 4 g 2 b 0
+16/08/2023 11:46:23 copy_tiles: allocating first_line at size 33
+16/08/2023 11:46:24 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000018)
+16/08/2023 11:46:24 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000016)
+16/08/2023 11:46:24 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000015)
+16/08/2023 11:46:24 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x0000000F)
+16/08/2023 11:46:24 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0xFFFFFEC6)
+16/08/2023 11:46:24 Enabling full-color cursor updates for client 172.28.0.2
+16/08/2023 11:46:24 Enabling NewFBSize protocol extension for client 172.28.0.2
+16/08/2023 11:46:24 Switching from ZRLE to raw Encoding for client 172.28.0.2
+16/08/2023 11:46:24 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000018)
+16/08/2023 11:46:24 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000016)
+16/08/2023 11:46:24 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000015)
+16/08/2023 11:46:24 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x0000000F)
+16/08/2023 11:46:24 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0xFFFFFEC6)
+16/08/2023 11:46:24 Enabling full-color cursor updates for client 172.28.0.2
+16/08/2023 11:46:24 Enabling NewFBSize protocol extension for client 172.28.0.2
+16/08/2023 11:46:24 Switching from raw to ZRLE Encoding for client 172.28.0.2
+16/08/2023 11:46:24 client 1 network rate 64.7 KB/sec (64.7 eff KB/sec)
+16/08/2023 11:46:24 client 1 latency:  121.9 ms
+16/08/2023 11:46:24 dt1: 0.0026, dt2: 0.3178 dt3: 0.1219 bytes: 16798
+16/08/2023 11:46:24 link_rate: LR_BROADBAND - 121 ms, 64 KB/s
+16/08/2023 11:46:33 created selwin: 0x2e00025
+16/08/2023 11:46:33 called initialize_xfixes()
+16/08/2023 11:46:47 non-existent cursor: which=9
+16/08/2023 11:47:21 Pixel format for client 172.28.0.2:
+16/08/2023 11:47:21   32 bpp, depth 24, little endian
+16/08/2023 11:47:21   true colour: max r 255 g 255 b 255, shift r 16 g 8 b 0
+16/08/2023 11:47:21 no translation needed
+16/08/2023 11:48:31 added missing keysym to X display: 093 0x100203a "U203A"
+*** stack smashing detected ***: <unknown> terminated
+caught signal: 6
+16/08/2023 11:50:20 deleted 32 tile_row polling images.
+16/08/2023 11:50:20 deleted keycode from X display: 093 0x100203a "U203A"
+16/08/2023 11:50:20 Restored X server key autorepeat to: 1
+###############################################################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  **  WARNING  **  WARNING  **  WARNING  **  WARNING  **   @#
+#@                                                           @#
+#@        YOU ARE RUNNING X11VNC WITHOUT A PASSWORD!!        @#
+#@                                                           @#
+#@  This means anyone with network access to this computer   @#
+#@  may be able to view and control your desktop.            @#
+#@                                                           @#
+#@ >>> If you did not mean to do this Press CTRL-C now!! <<< @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  You can create an x11vnc password file by running:       @#
+#@                                                           @#
+#@       x11vnc -storepasswd password /path/to/passfile      @#
+#@  or   x11vnc -storepasswd /path/to/passfile               @#
+#@  or   x11vnc -storepasswd                                 @#
+#@                                                           @#
+#@  (the last one will use ~/.vnc/passwd)                    @#
+#@                                                           @#
+#@  and then starting x11vnc via:                            @#
+#@                                                           @#
+#@      x11vnc -rfbauth /path/to/passfile                    @#
+#@                                                           @#
+#@  an existing ~/.vnc/passwd file from another VNC          @#
+#@  application will work fine too.                          @#
+#@                                                           @#
+#@  You can also use the -passwdfile or -passwd options.     @#
+#@  (note -passwd is unsafe if local users are not trusted)  @#
+#@                                                           @#
+#@  Make sure any -rfbauth and -passwdfile password files    @#
+#@  cannot be read by untrusted users.                       @#
+#@                                                           @#
+#@  Use x11vnc -usepw to automatically use your              @#
+#@  ~/.vnc/passwd or ~/.vnc/passwdfile password files.       @#
+#@  (and prompt you to create ~/.vnc/passwd if neither       @#
+#@  file exists.)  Under -usepw, x11vnc will exit if it      @#
+#@  cannot find a password to use.                           @#
+#@                                                           @#
+#@                                                           @#
+#@  Even with a password, the subsequent VNC traffic is      @#
+#@  sent in the clear.  Consider tunnelling via ssh(1):      @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/#tunnelling            @#
+#@                                                           @#
+#@  Or using the x11vnc SSL options: -ssl and -stunnel       @#
+#@                                                           @#
+#@  Please Read the documention for more info about          @#
+#@  passwords, security, and encryption.                     @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/faq.html#faq-passwd    @#
+#@                                                           @#
+#@  To disable this warning use the -nopw option, or put     @#
+#@  'nopw' on a line in your ~/.x11vncrc file.               @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+###############################################################
+17/08/2023 12:10:03 x11vnc version: 0.9.13 lastmod: 2011-08-10  pid: 16276
+17/08/2023 12:10:04 Using X display :0
+17/08/2023 12:10:04 rootwin: 0x1ac reswin: 0x2e00001 dpy: 0x87bc80c0
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 ------------------ USEFUL INFORMATION ------------------
+17/08/2023 12:10:04 X DAMAGE available on display, using it for polling hints.
+17/08/2023 12:10:04   To disable this behavior use: '-noxdamage'
+17/08/2023 12:10:04 
+17/08/2023 12:10:04   Most compositing window managers like 'compiz' or 'beryl'
+17/08/2023 12:10:04   cause X DAMAGE to fail, and so you may not see any screen
+17/08/2023 12:10:04   updates via VNC.  Either disable 'compiz' (recommended) or
+17/08/2023 12:10:04   supply the x11vnc '-noxdamage' command line option.
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 Wireframing: -wireframe mode is in effect for window moves.
+17/08/2023 12:10:04   If this yields undesired behavior (poor response, painting
+17/08/2023 12:10:04   errors, etc) it may be disabled:
+17/08/2023 12:10:04    - use '-nowf' to disable wireframing completely.
+17/08/2023 12:10:04    - use '-nowcr' to disable the Copy Rectangle after the
+17/08/2023 12:10:04      moved window is released in the new position.
+17/08/2023 12:10:04   Also see the -help entry for tuning parameters.
+17/08/2023 12:10:04   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+17/08/2023 12:10:04   repaint the screen, also see the -fixscreen option for
+17/08/2023 12:10:04   periodic repaints.
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 XFIXES available on display, resetting cursor mode
+17/08/2023 12:10:04   to: '-cursor most'.
+17/08/2023 12:10:04   to disable this behavior use: '-cursor arrow'
+17/08/2023 12:10:04   or '-noxfixes'.
+17/08/2023 12:10:04 using XFIXES for cursor drawing.
+17/08/2023 12:10:04 GrabServer control via XTEST.
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 Scroll Detection: -scrollcopyrect mode is in effect to
+17/08/2023 12:10:04   use RECORD extension to try to detect scrolling windows
+17/08/2023 12:10:04   (induced by either user keystroke or mouse input).
+17/08/2023 12:10:04   If this yields undesired behavior (poor response, painting
+17/08/2023 12:10:04   errors, etc) it may be disabled via: '-noscr'
+17/08/2023 12:10:04   Also see the -help entry for tuning parameters.
+17/08/2023 12:10:04   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+17/08/2023 12:10:04   repaint the screen, also see the -fixscreen option for
+17/08/2023 12:10:04   periodic repaints.
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 XKEYBOARD: number of keysyms per keycode 7 is greater
+17/08/2023 12:10:04   than 4 and 51 keysyms are mapped above 4.
+17/08/2023 12:10:04   Automatically switching to -xkb mode.
+17/08/2023 12:10:04   If this makes the key mapping worse you can
+17/08/2023 12:10:04   disable it with the "-noxkb" option.
+17/08/2023 12:10:04   Also, remember "-remap DEAD" for accenting characters.
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 X FBPM extension not supported.
+17/08/2023 12:10:04 X display is capable of DPMS.
+17/08/2023 12:10:04 --------------------------------------------------------
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 Default visual ID: 0x21
+17/08/2023 12:10:04 Read initial data from X display into framebuffer.
+17/08/2023 12:10:04 initialize_screen: fb_depth/fb_bpp/fb_Bpl 24/32/4096
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 X display :0 is 32bpp depth=24 true color
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 Autoprobing TCP port 
+17/08/2023 12:10:04 Autoprobing selected TCP port 5900
+17/08/2023 12:10:04 Autoprobing TCP6 port 
+17/08/2023 12:10:04 Autoprobing selected TCP6 port 5900
+17/08/2023 12:10:04 listen6: bind: Address already in use
+17/08/2023 12:10:04 Not listening on IPv6 interface.
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 Xinerama is present and active (e.g. multi-head).
+17/08/2023 12:10:04 Xinerama: number of sub-screens: 1
+17/08/2023 12:10:04 Xinerama: no blackouts needed (only one sub-screen)
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 fb read rate: 134 MB/sec
+17/08/2023 12:10:04 fast read: reset -wait  ms to: 10
+17/08/2023 12:10:04 fast read: reset -defer ms to: 10
+17/08/2023 12:10:04 The X server says there are 10 mouse buttons.
+17/08/2023 12:10:04 screen setup finished.
+17/08/2023 12:10:04 
+17/08/2023 12:10:04 WARNING: You are running x11vnc WITHOUT a password.  See
+17/08/2023 12:10:04 WARNING: the warning message printed above for more info.
+17/08/2023 12:10:04 
+
+The VNC desktop is:      graslandKar:0
+PORT=5900
+
+******************************************************************************
+Have you tried the x11vnc '-ncache' VNC client-side pixel caching feature yet?
+
+The scheme stores pixel data offscreen on the VNC viewer side for faster
+retrieval.  It should work with any VNC viewer.  Try it by running:
+
+    x11vnc -ncache 10 ...
+
+One can also add -ncache_cr for smooth 'copyrect' window motion.
+More info: http://www.karlrunge.com/x11vnc/faq.html#faq-client-caching
+
+17/08/2023 12:10:09 Got connection from client 172.28.0.2
+17/08/2023 12:10:09   other clients:
+17/08/2023 12:10:09 Normal socket connection
+17/08/2023 12:10:09 Disabled X server key autorepeat.
+17/08/2023 12:10:09   to force back on run: 'xset r on' (3 times)
+17/08/2023 12:10:09 incr accepted_client=1 for 172.28.0.2:58125  sock=11
+17/08/2023 12:10:09 Client Protocol Version 3.8
+17/08/2023 12:10:09 Protocol version sent 3.8, using 3.8
+17/08/2023 12:10:09 rfbProcessClientSecurityType: executing handler for type 1
+17/08/2023 12:10:09 rfbProcessClientSecurityType: returning securityResult for client rfb version >= 3.8
+17/08/2023 12:10:09 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000018)
+17/08/2023 12:10:09 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000016)
+17/08/2023 12:10:09 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000015)
+17/08/2023 12:10:09 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x0000000F)
+17/08/2023 12:10:09 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0xFFFFFEC6)
+17/08/2023 12:10:09 Enabling full-color cursor updates for client 172.28.0.2
+17/08/2023 12:10:09 Enabling NewFBSize protocol extension for client 172.28.0.2
+17/08/2023 12:10:09 Using ZRLE encoding for client 172.28.0.2
+17/08/2023 12:10:09 Pixel format for client 172.28.0.2:
+17/08/2023 12:10:09   8 bpp, depth 6
+17/08/2023 12:10:09   true colour: max r 3 g 3 b 3, shift r 4 g 2 b 0
+17/08/2023 12:10:09 Pixel format for client 172.28.0.2:
+17/08/2023 12:10:09   32 bpp, depth 24, little endian
+17/08/2023 12:10:09   true colour: max r 255 g 255 b 255, shift r 16 g 8 b 0
+17/08/2023 12:10:09 no translation needed
+17/08/2023 12:10:10 client 1 network rate 233.0 KB/sec (10204.7 eff KB/sec)
+17/08/2023 12:10:10 client 1 latency:  8.3 ms
+17/08/2023 12:10:10 dt1: 0.1901, dt2: 0.0548 dt3: 0.0083 bytes: 56107
+17/08/2023 12:10:10 link_rate: LR_UNKNOWN - 8 ms, 232 KB/s
+17/08/2023 12:10:10 client useCopyRect: 172.28.0.2 -1
+17/08/2023 12:10:10 client_set_net: 172.28.0.2  0.0170
+17/08/2023 12:10:10 created   xdamage object: 0x2e00024
+17/08/2023 12:10:10 copy_tiles: allocating first_line at size 33
+17/08/2023 12:10:18 created selwin: 0x2e00025
+17/08/2023 12:10:18 called initialize_xfixes()
+17/08/2023 12:10:18 non-existent cursor: which=9
+17/08/2023 12:11:13 cursor_noshape_updates_clients: 0
+17/08/2023 12:11:16 cursor_noshape_updates_clients: 0
+17/08/2023 12:11:17 cursor_noshape_updates_clients: 0
+17/08/2023 12:11:44 cursor_noshape_updates_clients: 0
+17/08/2023 12:16:22 idle keyboard:   turning X autorepeat back on.
+17/08/2023 12:17:12 rfbSendUpdateBuf: write: Connection timed out
+17/08/2023 12:17:12 client_count: 0
+17/08/2023 12:17:12 viewer exited.
+17/08/2023 12:17:12 deleted 32 tile_row polling images.
+###############################################################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  **  WARNING  **  WARNING  **  WARNING  **  WARNING  **   @#
+#@                                                           @#
+#@        YOU ARE RUNNING X11VNC WITHOUT A PASSWORD!!        @#
+#@                                                           @#
+#@  This means anyone with network access to this computer   @#
+#@  may be able to view and control your desktop.            @#
+#@                                                           @#
+#@ >>> If you did not mean to do this Press CTRL-C now!! <<< @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  You can create an x11vnc password file by running:       @#
+#@                                                           @#
+#@       x11vnc -storepasswd password /path/to/passfile      @#
+#@  or   x11vnc -storepasswd /path/to/passfile               @#
+#@  or   x11vnc -storepasswd                                 @#
+#@                                                           @#
+#@  (the last one will use ~/.vnc/passwd)                    @#
+#@                                                           @#
+#@  and then starting x11vnc via:                            @#
+#@                                                           @#
+#@      x11vnc -rfbauth /path/to/passfile                    @#
+#@                                                           @#
+#@  an existing ~/.vnc/passwd file from another VNC          @#
+#@  application will work fine too.                          @#
+#@                                                           @#
+#@  You can also use the -passwdfile or -passwd options.     @#
+#@  (note -passwd is unsafe if local users are not trusted)  @#
+#@                                                           @#
+#@  Make sure any -rfbauth and -passwdfile password files    @#
+#@  cannot be read by untrusted users.                       @#
+#@                                                           @#
+#@  Use x11vnc -usepw to automatically use your              @#
+#@  ~/.vnc/passwd or ~/.vnc/passwdfile password files.       @#
+#@  (and prompt you to create ~/.vnc/passwd if neither       @#
+#@  file exists.)  Under -usepw, x11vnc will exit if it      @#
+#@  cannot find a password to use.                           @#
+#@                                                           @#
+#@                                                           @#
+#@  Even with a password, the subsequent VNC traffic is      @#
+#@  sent in the clear.  Consider tunnelling via ssh(1):      @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/#tunnelling            @#
+#@                                                           @#
+#@  Or using the x11vnc SSL options: -ssl and -stunnel       @#
+#@                                                           @#
+#@  Please Read the documention for more info about          @#
+#@  passwords, security, and encryption.                     @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/faq.html#faq-passwd    @#
+#@                                                           @#
+#@  To disable this warning use the -nopw option, or put     @#
+#@  'nopw' on a line in your ~/.x11vncrc file.               @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+###############################################################
+17/08/2023 12:40:23 x11vnc version: 0.9.13 lastmod: 2011-08-10  pid: 21608
+17/08/2023 12:40:23 Using X display :0
+17/08/2023 12:40:23 rootwin: 0x1ac reswin: 0x2e00001 dpy: 0x735080c0
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 ------------------ USEFUL INFORMATION ------------------
+17/08/2023 12:40:23 X DAMAGE available on display, using it for polling hints.
+17/08/2023 12:40:23   To disable this behavior use: '-noxdamage'
+17/08/2023 12:40:23 
+17/08/2023 12:40:23   Most compositing window managers like 'compiz' or 'beryl'
+17/08/2023 12:40:23   cause X DAMAGE to fail, and so you may not see any screen
+17/08/2023 12:40:23   updates via VNC.  Either disable 'compiz' (recommended) or
+17/08/2023 12:40:23   supply the x11vnc '-noxdamage' command line option.
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 Wireframing: -wireframe mode is in effect for window moves.
+17/08/2023 12:40:23   If this yields undesired behavior (poor response, painting
+17/08/2023 12:40:23   errors, etc) it may be disabled:
+17/08/2023 12:40:23    - use '-nowf' to disable wireframing completely.
+17/08/2023 12:40:23    - use '-nowcr' to disable the Copy Rectangle after the
+17/08/2023 12:40:23      moved window is released in the new position.
+17/08/2023 12:40:23   Also see the -help entry for tuning parameters.
+17/08/2023 12:40:23   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+17/08/2023 12:40:23   repaint the screen, also see the -fixscreen option for
+17/08/2023 12:40:23   periodic repaints.
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 XFIXES available on display, resetting cursor mode
+17/08/2023 12:40:23   to: '-cursor most'.
+17/08/2023 12:40:23   to disable this behavior use: '-cursor arrow'
+17/08/2023 12:40:23   or '-noxfixes'.
+17/08/2023 12:40:23 using XFIXES for cursor drawing.
+17/08/2023 12:40:23 GrabServer control via XTEST.
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 Scroll Detection: -scrollcopyrect mode is in effect to
+17/08/2023 12:40:23   use RECORD extension to try to detect scrolling windows
+17/08/2023 12:40:23   (induced by either user keystroke or mouse input).
+17/08/2023 12:40:23   If this yields undesired behavior (poor response, painting
+17/08/2023 12:40:23   errors, etc) it may be disabled via: '-noscr'
+17/08/2023 12:40:23   Also see the -help entry for tuning parameters.
+17/08/2023 12:40:23   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+17/08/2023 12:40:23   repaint the screen, also see the -fixscreen option for
+17/08/2023 12:40:23   periodic repaints.
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 XKEYBOARD: number of keysyms per keycode 7 is greater
+17/08/2023 12:40:23   than 4 and 51 keysyms are mapped above 4.
+17/08/2023 12:40:23   Automatically switching to -xkb mode.
+17/08/2023 12:40:23   If this makes the key mapping worse you can
+17/08/2023 12:40:23   disable it with the "-noxkb" option.
+17/08/2023 12:40:23   Also, remember "-remap DEAD" for accenting characters.
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 X FBPM extension not supported.
+17/08/2023 12:40:23 X display is capable of DPMS.
+17/08/2023 12:40:23 --------------------------------------------------------
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 Default visual ID: 0x21
+17/08/2023 12:40:23 Read initial data from X display into framebuffer.
+17/08/2023 12:40:23 initialize_screen: fb_depth/fb_bpp/fb_Bpl 24/32/4096
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 X display :0 is 32bpp depth=24 true color
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 Autoprobing TCP port 
+17/08/2023 12:40:23 Autoprobing selected TCP port 5900
+17/08/2023 12:40:23 Autoprobing TCP6 port 
+17/08/2023 12:40:23 Autoprobing selected TCP6 port 5900
+17/08/2023 12:40:23 listen6: bind: Address already in use
+17/08/2023 12:40:23 Not listening on IPv6 interface.
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 Xinerama is present and active (e.g. multi-head).
+17/08/2023 12:40:23 Xinerama: number of sub-screens: 1
+17/08/2023 12:40:23 Xinerama: no blackouts needed (only one sub-screen)
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 fb read rate: 295 MB/sec
+17/08/2023 12:40:23 fast read: reset -wait  ms to: 10
+17/08/2023 12:40:23 fast read: reset -defer ms to: 10
+17/08/2023 12:40:23 The X server says there are 10 mouse buttons.
+17/08/2023 12:40:23 screen setup finished.
+17/08/2023 12:40:23 
+17/08/2023 12:40:23 WARNING: You are running x11vnc WITHOUT a password.  See
+17/08/2023 12:40:23 WARNING: the warning message printed above for more info.
+17/08/2023 12:40:23 
+
+The VNC desktop is:      graslandKar:0
+PORT=5900
+
+******************************************************************************
+Have you tried the x11vnc '-ncache' VNC client-side pixel caching feature yet?
+
+The scheme stores pixel data offscreen on the VNC viewer side for faster
+retrieval.  It should work with any VNC viewer.  Try it by running:
+
+    x11vnc -ncache 10 ...
+
+One can also add -ncache_cr for smooth 'copyrect' window motion.
+More info: http://www.karlrunge.com/x11vnc/faq.html#faq-client-caching
+
+17/08/2023 12:40:25 Got connection from client 172.28.0.2
+17/08/2023 12:40:25   other clients:
+17/08/2023 12:40:26 Normal socket connection
+17/08/2023 12:40:26 Disabled X server key autorepeat.
+17/08/2023 12:40:26   to force back on run: 'xset r on' (3 times)
+17/08/2023 12:40:26 incr accepted_client=1 for 172.28.0.2:60100  sock=11
+17/08/2023 12:40:26 Client Protocol Version 3.8
+17/08/2023 12:40:26 Protocol version sent 3.8, using 3.8
+17/08/2023 12:40:26 rfbProcessClientSecurityType: executing handler for type 1
+17/08/2023 12:40:26 rfbProcessClientSecurityType: returning securityResult for client rfb version >= 3.8
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000018)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000016)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000015)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x0000000F)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0xFFFFFEC6)
+17/08/2023 12:40:26 Enabling full-color cursor updates for client 172.28.0.2
+17/08/2023 12:40:26 Enabling NewFBSize protocol extension for client 172.28.0.2
+17/08/2023 12:40:26 Using ZRLE encoding for client 172.28.0.2
+17/08/2023 12:40:26 Pixel format for client 172.28.0.2:
+17/08/2023 12:40:26   8 bpp, depth 6
+17/08/2023 12:40:26   true colour: max r 3 g 3 b 3, shift r 4 g 2 b 0
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000018)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000016)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000015)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x0000000F)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0xFFFFFEC6)
+17/08/2023 12:40:26 Enabling full-color cursor updates for client 172.28.0.2
+17/08/2023 12:40:26 Enabling NewFBSize protocol extension for client 172.28.0.2
+17/08/2023 12:40:26 Switching from ZRLE to raw Encoding for client 172.28.0.2
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000018)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000016)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000015)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x0000000F)
+17/08/2023 12:40:26 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0xFFFFFEC6)
+17/08/2023 12:40:26 Enabling full-color cursor updates for client 172.28.0.2
+17/08/2023 12:40:26 Enabling NewFBSize protocol extension for client 172.28.0.2
+17/08/2023 12:40:26 Switching from raw to ZRLE Encoding for client 172.28.0.2
+17/08/2023 12:40:26 Pixel format for client 172.28.0.2:
+17/08/2023 12:40:26   32 bpp, depth 24, little endian
+17/08/2023 12:40:26   true colour: max r 255 g 255 b 255, shift r 16 g 8 b 0
+17/08/2023 12:40:26 no translation needed
+17/08/2023 12:40:26 client 1 network rate 335.7 KB/sec (335.7 eff KB/sec)
+17/08/2023 12:40:26 client 1 latency:  4.8 ms
+17/08/2023 12:40:26 dt1: 0.0004, dt2: 0.0521 dt3: 0.0048 bytes: 16798
+17/08/2023 12:40:26 link_rate: LR_LAN - 4 ms, 335 KB/s
+17/08/2023 12:40:26 client useCopyRect: 172.28.0.2 -1
+17/08/2023 12:40:26 client_set_net: 172.28.0.2  0.0063
+17/08/2023 12:40:26 created   xdamage object: 0x2e00024
+17/08/2023 12:40:32 copy_tiles: allocating first_line at size 33
+17/08/2023 12:40:35 created selwin: 0x2e00025
+17/08/2023 12:40:35 called initialize_xfixes()
+17/08/2023 12:46:06 idle keyboard:   turning X autorepeat back on.
+17/08/2023 12:53:00 client_count: 0
+17/08/2023 12:53:00 viewer exited.
+17/08/2023 12:53:00 deleted 32 tile_row polling images.
+###############################################################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  **  WARNING  **  WARNING  **  WARNING  **  WARNING  **   @#
+#@                                                           @#
+#@        YOU ARE RUNNING X11VNC WITHOUT A PASSWORD!!        @#
+#@                                                           @#
+#@  This means anyone with network access to this computer   @#
+#@  may be able to view and control your desktop.            @#
+#@                                                           @#
+#@ >>> If you did not mean to do this Press CTRL-C now!! <<< @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  You can create an x11vnc password file by running:       @#
+#@                                                           @#
+#@       x11vnc -storepasswd password /path/to/passfile      @#
+#@  or   x11vnc -storepasswd /path/to/passfile               @#
+#@  or   x11vnc -storepasswd                                 @#
+#@                                                           @#
+#@  (the last one will use ~/.vnc/passwd)                    @#
+#@                                                           @#
+#@  and then starting x11vnc via:                            @#
+#@                                                           @#
+#@      x11vnc -rfbauth /path/to/passfile                    @#
+#@                                                           @#
+#@  an existing ~/.vnc/passwd file from another VNC          @#
+#@  application will work fine too.                          @#
+#@                                                           @#
+#@  You can also use the -passwdfile or -passwd options.     @#
+#@  (note -passwd is unsafe if local users are not trusted)  @#
+#@                                                           @#
+#@  Make sure any -rfbauth and -passwdfile password files    @#
+#@  cannot be read by untrusted users.                       @#
+#@                                                           @#
+#@  Use x11vnc -usepw to automatically use your              @#
+#@  ~/.vnc/passwd or ~/.vnc/passwdfile password files.       @#
+#@  (and prompt you to create ~/.vnc/passwd if neither       @#
+#@  file exists.)  Under -usepw, x11vnc will exit if it      @#
+#@  cannot find a password to use.                           @#
+#@                                                           @#
+#@                                                           @#
+#@  Even with a password, the subsequent VNC traffic is      @#
+#@  sent in the clear.  Consider tunnelling via ssh(1):      @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/#tunnelling            @#
+#@                                                           @#
+#@  Or using the x11vnc SSL options: -ssl and -stunnel       @#
+#@                                                           @#
+#@  Please Read the documention for more info about          @#
+#@  passwords, security, and encryption.                     @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/faq.html#faq-passwd    @#
+#@                                                           @#
+#@  To disable this warning use the -nopw option, or put     @#
+#@  'nopw' on a line in your ~/.x11vncrc file.               @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+###############################################################
+17/08/2023 14:10:58 x11vnc version: 0.9.13 lastmod: 2011-08-10  pid: 32248
+17/08/2023 14:10:58 Using X display :0
+17/08/2023 14:10:58 rootwin: 0x1ac reswin: 0x2e00001 dpy: 0xce59f0c0
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 ------------------ USEFUL INFORMATION ------------------
+17/08/2023 14:10:58 X DAMAGE available on display, using it for polling hints.
+17/08/2023 14:10:58   To disable this behavior use: '-noxdamage'
+17/08/2023 14:10:58 
+17/08/2023 14:10:58   Most compositing window managers like 'compiz' or 'beryl'
+17/08/2023 14:10:58   cause X DAMAGE to fail, and so you may not see any screen
+17/08/2023 14:10:58   updates via VNC.  Either disable 'compiz' (recommended) or
+17/08/2023 14:10:58   supply the x11vnc '-noxdamage' command line option.
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 Wireframing: -wireframe mode is in effect for window moves.
+17/08/2023 14:10:58   If this yields undesired behavior (poor response, painting
+17/08/2023 14:10:58   errors, etc) it may be disabled:
+17/08/2023 14:10:58    - use '-nowf' to disable wireframing completely.
+17/08/2023 14:10:58    - use '-nowcr' to disable the Copy Rectangle after the
+17/08/2023 14:10:58      moved window is released in the new position.
+17/08/2023 14:10:58   Also see the -help entry for tuning parameters.
+17/08/2023 14:10:58   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+17/08/2023 14:10:58   repaint the screen, also see the -fixscreen option for
+17/08/2023 14:10:58   periodic repaints.
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 XFIXES available on display, resetting cursor mode
+17/08/2023 14:10:58   to: '-cursor most'.
+17/08/2023 14:10:58   to disable this behavior use: '-cursor arrow'
+17/08/2023 14:10:58   or '-noxfixes'.
+17/08/2023 14:10:58 using XFIXES for cursor drawing.
+17/08/2023 14:10:58 GrabServer control via XTEST.
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 Scroll Detection: -scrollcopyrect mode is in effect to
+17/08/2023 14:10:58   use RECORD extension to try to detect scrolling windows
+17/08/2023 14:10:58   (induced by either user keystroke or mouse input).
+17/08/2023 14:10:58   If this yields undesired behavior (poor response, painting
+17/08/2023 14:10:58   errors, etc) it may be disabled via: '-noscr'
+17/08/2023 14:10:58   Also see the -help entry for tuning parameters.
+17/08/2023 14:10:58   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+17/08/2023 14:10:58   repaint the screen, also see the -fixscreen option for
+17/08/2023 14:10:58   periodic repaints.
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 XKEYBOARD: number of keysyms per keycode 7 is greater
+17/08/2023 14:10:58   than 4 and 51 keysyms are mapped above 4.
+17/08/2023 14:10:58   Automatically switching to -xkb mode.
+17/08/2023 14:10:58   If this makes the key mapping worse you can
+17/08/2023 14:10:58   disable it with the "-noxkb" option.
+17/08/2023 14:10:58   Also, remember "-remap DEAD" for accenting characters.
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 X FBPM extension not supported.
+17/08/2023 14:10:58 X display is capable of DPMS.
+17/08/2023 14:10:58 --------------------------------------------------------
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 Default visual ID: 0x21
+17/08/2023 14:10:58 Read initial data from X display into framebuffer.
+17/08/2023 14:10:58 initialize_screen: fb_depth/fb_bpp/fb_Bpl 24/32/4096
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 X display :0 is 32bpp depth=24 true color
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 Autoprobing TCP port 
+17/08/2023 14:10:58 Autoprobing selected TCP port 5900
+17/08/2023 14:10:58 Autoprobing TCP6 port 
+17/08/2023 14:10:58 Autoprobing selected TCP6 port 5900
+17/08/2023 14:10:58 listen6: bind: Address already in use
+17/08/2023 14:10:58 Not listening on IPv6 interface.
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 Xinerama is present and active (e.g. multi-head).
+17/08/2023 14:10:58 Xinerama: number of sub-screens: 1
+17/08/2023 14:10:58 Xinerama: no blackouts needed (only one sub-screen)
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 fb read rate: 227 MB/sec
+17/08/2023 14:10:58 fast read: reset -wait  ms to: 10
+17/08/2023 14:10:58 fast read: reset -defer ms to: 10
+17/08/2023 14:10:58 The X server says there are 10 mouse buttons.
+17/08/2023 14:10:58 screen setup finished.
+17/08/2023 14:10:58 
+17/08/2023 14:10:58 WARNING: You are running x11vnc WITHOUT a password.  See
+17/08/2023 14:10:58 WARNING: the warning message printed above for more info.
+17/08/2023 14:10:58 
+
+The VNC desktop is:      graslandKar:0
+PORT=5900
+
+******************************************************************************
+Have you tried the x11vnc '-ncache' VNC client-side pixel caching feature yet?
+
+The scheme stores pixel data offscreen on the VNC viewer side for faster
+retrieval.  It should work with any VNC viewer.  Try it by running:
+
+    x11vnc -ncache 10 ...
+
+One can also add -ncache_cr for smooth 'copyrect' window motion.
+More info: http://www.karlrunge.com/x11vnc/faq.html#faq-client-caching
+
+17/08/2023 14:11:20 Got connection from client 172.28.0.2
+17/08/2023 14:11:20   other clients:
+17/08/2023 14:11:20 Normal socket connection
+17/08/2023 14:11:20 Disabled X server key autorepeat.
+17/08/2023 14:11:20   to force back on run: 'xset r on' (3 times)
+17/08/2023 14:11:20 incr accepted_client=1 for 172.28.0.2:52093  sock=11
+17/08/2023 14:11:20 Client Protocol Version 3.8
+17/08/2023 14:11:20 Protocol version sent 3.8, using 3.8
+17/08/2023 14:11:20 rfbProcessClientSecurityType: executing handler for type 1
+17/08/2023 14:11:20 rfbProcessClientSecurityType: returning securityResult for client rfb version >= 3.8
+17/08/2023 14:11:20 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000018)
+17/08/2023 14:11:20 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000016)
+17/08/2023 14:11:20 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000015)
+17/08/2023 14:11:20 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x0000000F)
+17/08/2023 14:11:20 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0xFFFFFEC6)
+17/08/2023 14:11:20 Enabling full-color cursor updates for client 172.28.0.2
+17/08/2023 14:11:20 Enabling NewFBSize protocol extension for client 172.28.0.2
+17/08/2023 14:11:20 Using ZRLE encoding for client 172.28.0.2
+17/08/2023 14:11:20 Pixel format for client 172.28.0.2:
+17/08/2023 14:11:20   8 bpp, depth 6
+17/08/2023 14:11:20   true colour: max r 3 g 3 b 3, shift r 4 g 2 b 0
+17/08/2023 14:11:21 Pixel format for client 172.28.0.2:
+17/08/2023 14:11:21   32 bpp, depth 24, little endian
+17/08/2023 14:11:21   true colour: max r 255 g 255 b 255, shift r 16 g 8 b 0
+17/08/2023 14:11:21 no translation needed
+17/08/2023 14:11:21 client 1 network rate 66.7 KB/sec (4029.8 eff KB/sec)
+17/08/2023 14:11:21 client 1 latency:  11.4 ms
+17/08/2023 14:11:21 dt1: 0.0220, dt2: 0.1363 dt3: 0.0114 bytes: 10178
+17/08/2023 14:11:21 link_rate: LR_BROADBAND - 11 ms, 66 KB/s
+17/08/2023 14:11:21 client useCopyRect: 172.28.0.2 -1
+17/08/2023 14:11:21 client_set_net: 172.28.0.2  0.0155
+17/08/2023 14:11:21 created   xdamage object: 0x2e00024
+17/08/2023 14:11:21 copy_tiles: allocating first_line at size 33
+17/08/2023 14:11:30 created selwin: 0x2e00025
+17/08/2023 14:11:30 called initialize_xfixes()
+17/08/2023 14:14:16 increased wireframe timeouts for slow network connection.
+17/08/2023 14:14:16 netrate: 66 KB/sec, latency: 11 ms
+17/08/2023 14:14:16 cursor_noshape_updates_clients: 0
+17/08/2023 14:19:18 cursor_noshape_updates_clients: 0
+17/08/2023 14:19:21 cursor_noshape_updates_clients: 0
+###############################################################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  **  WARNING  **  WARNING  **  WARNING  **  WARNING  **   @#
+#@                                                           @#
+#@        YOU ARE RUNNING X11VNC WITHOUT A PASSWORD!!        @#
+#@                                                           @#
+#@  This means anyone with network access to this computer   @#
+#@  may be able to view and control your desktop.            @#
+#@                                                           @#
+#@ >>> If you did not mean to do this Press CTRL-C now!! <<< @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  You can create an x11vnc password file by running:       @#
+#@                                                           @#
+#@       x11vnc -storepasswd password /path/to/passfile      @#
+#@  or   x11vnc -storepasswd /path/to/passfile               @#
+#@  or   x11vnc -storepasswd                                 @#
+#@                                                           @#
+#@  (the last one will use ~/.vnc/passwd)                    @#
+#@                                                           @#
+#@  and then starting x11vnc via:                            @#
+#@                                                           @#
+#@      x11vnc -rfbauth /path/to/passfile                    @#
+#@                                                           @#
+#@  an existing ~/.vnc/passwd file from another VNC          @#
+#@  application will work fine too.                          @#
+#@                                                           @#
+#@  You can also use the -passwdfile or -passwd options.     @#
+#@  (note -passwd is unsafe if local users are not trusted)  @#
+#@                                                           @#
+#@  Make sure any -rfbauth and -passwdfile password files    @#
+#@  cannot be read by untrusted users.                       @#
+#@                                                           @#
+#@  Use x11vnc -usepw to automatically use your              @#
+#@  ~/.vnc/passwd or ~/.vnc/passwdfile password files.       @#
+#@  (and prompt you to create ~/.vnc/passwd if neither       @#
+#@  file exists.)  Under -usepw, x11vnc will exit if it      @#
+#@  cannot find a password to use.                           @#
+#@                                                           @#
+#@                                                           @#
+#@  Even with a password, the subsequent VNC traffic is      @#
+#@  sent in the clear.  Consider tunnelling via ssh(1):      @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/#tunnelling            @#
+#@                                                           @#
+#@  Or using the x11vnc SSL options: -ssl and -stunnel       @#
+#@                                                           @#
+#@  Please Read the documention for more info about          @#
+#@  passwords, security, and encryption.                     @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/faq.html#faq-passwd    @#
+#@                                                           @#
+#@  To disable this warning use the -nopw option, or put     @#
+#@  'nopw' on a line in your ~/.x11vncrc file.               @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+###############################################################
+18/08/2023 12:37:30 x11vnc version: 0.9.13 lastmod: 2011-08-10  pid: 19429
+18/08/2023 12:37:30 Using X display :0
+18/08/2023 12:37:30 rootwin: 0x1ac reswin: 0x2e00001 dpy: 0xa02210c0
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 ------------------ USEFUL INFORMATION ------------------
+18/08/2023 12:37:30 X DAMAGE available on display, using it for polling hints.
+18/08/2023 12:37:30   To disable this behavior use: '-noxdamage'
+18/08/2023 12:37:30 
+18/08/2023 12:37:30   Most compositing window managers like 'compiz' or 'beryl'
+18/08/2023 12:37:30   cause X DAMAGE to fail, and so you may not see any screen
+18/08/2023 12:37:30   updates via VNC.  Either disable 'compiz' (recommended) or
+18/08/2023 12:37:30   supply the x11vnc '-noxdamage' command line option.
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 Wireframing: -wireframe mode is in effect for window moves.
+18/08/2023 12:37:30   If this yields undesired behavior (poor response, painting
+18/08/2023 12:37:30   errors, etc) it may be disabled:
+18/08/2023 12:37:30    - use '-nowf' to disable wireframing completely.
+18/08/2023 12:37:30    - use '-nowcr' to disable the Copy Rectangle after the
+18/08/2023 12:37:30      moved window is released in the new position.
+18/08/2023 12:37:30   Also see the -help entry for tuning parameters.
+18/08/2023 12:37:30   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+18/08/2023 12:37:30   repaint the screen, also see the -fixscreen option for
+18/08/2023 12:37:30   periodic repaints.
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 XFIXES available on display, resetting cursor mode
+18/08/2023 12:37:30   to: '-cursor most'.
+18/08/2023 12:37:30   to disable this behavior use: '-cursor arrow'
+18/08/2023 12:37:30   or '-noxfixes'.
+18/08/2023 12:37:30 using XFIXES for cursor drawing.
+18/08/2023 12:37:30 GrabServer control via XTEST.
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 Scroll Detection: -scrollcopyrect mode is in effect to
+18/08/2023 12:37:30   use RECORD extension to try to detect scrolling windows
+18/08/2023 12:37:30   (induced by either user keystroke or mouse input).
+18/08/2023 12:37:30   If this yields undesired behavior (poor response, painting
+18/08/2023 12:37:30   errors, etc) it may be disabled via: '-noscr'
+18/08/2023 12:37:30   Also see the -help entry for tuning parameters.
+18/08/2023 12:37:30   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+18/08/2023 12:37:30   repaint the screen, also see the -fixscreen option for
+18/08/2023 12:37:30   periodic repaints.
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 XKEYBOARD: number of keysyms per keycode 7 is greater
+18/08/2023 12:37:30   than 4 and 51 keysyms are mapped above 4.
+18/08/2023 12:37:30   Automatically switching to -xkb mode.
+18/08/2023 12:37:30   If this makes the key mapping worse you can
+18/08/2023 12:37:30   disable it with the "-noxkb" option.
+18/08/2023 12:37:30   Also, remember "-remap DEAD" for accenting characters.
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 X FBPM extension not supported.
+18/08/2023 12:37:30 X display is capable of DPMS.
+18/08/2023 12:37:30 --------------------------------------------------------
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 Default visual ID: 0x21
+18/08/2023 12:37:30 Read initial data from X display into framebuffer.
+18/08/2023 12:37:30 initialize_screen: fb_depth/fb_bpp/fb_Bpl 24/32/4096
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 X display :0 is 32bpp depth=24 true color
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 Autoprobing TCP port 
+18/08/2023 12:37:30 Autoprobing selected TCP port 5900
+18/08/2023 12:37:30 Autoprobing TCP6 port 
+18/08/2023 12:37:30 Autoprobing selected TCP6 port 5900
+18/08/2023 12:37:30 listen6: bind: Address already in use
+18/08/2023 12:37:30 Not listening on IPv6 interface.
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 Xinerama is present and active (e.g. multi-head).
+18/08/2023 12:37:30 Xinerama: number of sub-screens: 1
+18/08/2023 12:37:30 Xinerama: no blackouts needed (only one sub-screen)
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 fb read rate: 90 MB/sec
+18/08/2023 12:37:30 fast read: reset -wait  ms to: 10
+18/08/2023 12:37:30 fast read: reset -defer ms to: 10
+18/08/2023 12:37:30 The X server says there are 10 mouse buttons.
+18/08/2023 12:37:30 screen setup finished.
+18/08/2023 12:37:30 
+18/08/2023 12:37:30 WARNING: You are running x11vnc WITHOUT a password.  See
+18/08/2023 12:37:30 WARNING: the warning message printed above for more info.
+18/08/2023 12:37:30 
+
+The VNC desktop is:      graslandKar:0
+PORT=5900
+
+******************************************************************************
+Have you tried the x11vnc '-ncache' VNC client-side pixel caching feature yet?
+
+The scheme stores pixel data offscreen on the VNC viewer side for faster
+retrieval.  It should work with any VNC viewer.  Try it by running:
+
+    x11vnc -ncache 10 ...
+
+One can also add -ncache_cr for smooth 'copyrect' window motion.
+More info: http://www.karlrunge.com/x11vnc/faq.html#faq-client-caching
+
+18/08/2023 12:37:34 Got connection from client 172.28.0.2
+18/08/2023 12:37:34   other clients:
+18/08/2023 12:37:34 Normal socket connection
+18/08/2023 12:37:34 Disabled X server key autorepeat.
+18/08/2023 12:37:34   to force back on run: 'xset r on' (3 times)
+18/08/2023 12:37:34 incr accepted_client=1 for 172.28.0.2:64048  sock=11
+18/08/2023 12:37:34 Client Protocol Version 3.8
+18/08/2023 12:37:34 Protocol version sent 3.8, using 3.8
+18/08/2023 12:37:34 rfbProcessClientSecurityType: executing handler for type 1
+18/08/2023 12:37:34 rfbProcessClientSecurityType: returning securityResult for client rfb version >= 3.8
+18/08/2023 12:37:34 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000018)
+18/08/2023 12:37:34 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000016)
+18/08/2023 12:37:34 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x00000015)
+18/08/2023 12:37:34 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0x0000000F)
+18/08/2023 12:37:34 rfbProcessClientNormalMessage: ignoring unsupported encoding type Enc(0xFFFFFEC6)
+18/08/2023 12:37:34 Enabling full-color cursor updates for client 172.28.0.2
+18/08/2023 12:37:34 Enabling NewFBSize protocol extension for client 172.28.0.2
+18/08/2023 12:37:34 Using ZRLE encoding for client 172.28.0.2
+18/08/2023 12:37:34 Pixel format for client 172.28.0.2:
+18/08/2023 12:37:34   8 bpp, depth 6
+18/08/2023 12:37:34   true colour: max r 3 g 3 b 3, shift r 4 g 2 b 0
+18/08/2023 12:37:34 Pixel format for client 172.28.0.2:
+18/08/2023 12:37:34   32 bpp, depth 24, little endian
+18/08/2023 12:37:34   true colour: max r 255 g 255 b 255, shift r 16 g 8 b 0
+18/08/2023 12:37:34 no translation needed
+18/08/2023 12:37:34 client 1 network rate 50.6 KB/sec (3054.6 eff KB/sec)
+18/08/2023 12:37:34 client 1 latency:  5.8 ms
+18/08/2023 12:37:34 dt1: 0.0425, dt2: 0.1617 dt3: 0.0058 bytes: 10184
+18/08/2023 12:37:34 link_rate: LR_BROADBAND - 5 ms, 50 KB/s
+18/08/2023 12:37:34 client useCopyRect: 172.28.0.2 -1
+18/08/2023 12:37:34 client_set_net: 172.28.0.2  0.0166
+18/08/2023 12:37:34 created   xdamage object: 0x2e00024
+18/08/2023 12:37:35 copy_tiles: allocating first_line at size 33
+18/08/2023 12:37:44 created selwin: 0x2e00025
+18/08/2023 12:37:44 called initialize_xfixes()
+18/08/2023 12:40:09 increased wireframe timeouts for slow network connection.
+18/08/2023 12:40:09 netrate: 50 KB/sec, latency: 5 ms
+18/08/2023 12:40:09 cursor_noshape_updates_clients: 0
+18/08/2023 12:57:08 idle keyboard:   turning X autorepeat back on.
+18/08/2023 13:07:03 active keyboard: turning X autorepeat off.
+18/08/2023 13:12:03 idle keyboard:   turning X autorepeat back on.
+18/08/2023 13:25:54 active keyboard: turning X autorepeat off.
+18/08/2023 13:26:14 cursor_noshape_updates_clients: 0
+18/08/2023 13:35:42 idle keyboard:   turning X autorepeat back on.
+18/08/2023 13:37:26 active keyboard: turning X autorepeat off.
+18/08/2023 13:46:10 idle keyboard:   turning X autorepeat back on.
