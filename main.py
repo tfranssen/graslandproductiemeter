@@ -11,6 +11,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import time
+import logging
+import boto3
+from botocore.exceptions import ClientError
+import os
 
 absolute_path = os.path.dirname(__file__)
 
@@ -32,7 +36,8 @@ class Window(tk.Tk):
         self.lastGPSFix = ""
         self.measurementActive = False
         self.sensorData = [[0,0,0,0,0,0,0,0,0]]
-        self.debug = True 
+        self.debug = False
+        self.s3_client = boto3.client('s3')
 
         self.df = pd.DataFrame(columns=['lat', 'lon', 'distance', 'laser1', 'laser2', 'laser3', 'laser4', 'laser5', 'laser6'])
         self.activeFrame = "rightFrame"
@@ -205,84 +210,92 @@ class Window(tk.Tk):
         self.activeFrame = "rightFrame"
      
     def measure(self,event):
-        try:
-            if self.measurementActive == False:
-                # If measurement is not active, start measurement
-                if self.activeFrame == "chartFrame":
-                    self.chartFrame.pack_forget()
-                    self.rightFrame.pack(side=tk.RIGHT)
-                    self.activeFrame = "rightFrame"
-                self.arduino.write(b"r")
-                self.lastDistance = "0.000"
-                self.sensorData = [[self.lastLat, self.lastLon,0,0,0,0,0,0,0]]
-                self.measurementActive = True
-                self.rechthoekKleinLabel2Text["text"] = "Stop"
-            else:
-                # If measurement is active, stop measurement
-                self.measurementActive = False
-                if len(self.sensorData) > 2 or self.debug == True:
-                    self.rechthoekKleinLabel2Text["text"] = "Saving..."
-                    self.root.update()     
-                    self.df = pd.DataFrame(self.sensorData, columns=['lat', 'lon', 'distance', 'laser1', 'laser2', 'laser3', 'laser4', 'laser5', 'laser6'])
-                    # make columns lat, lon and distance as float
-                    self.df['lat'] = self.df['lat'].astype(float)
-                    self.df['lon'] = self.df['lon'].astype(float)
-                    self.df['distance'] = self.df['distance'].astype(float)
-                    # round lat, lon and distance to 4 decimals
-                    self.df = self.df.round(4)
-                    # sort df by distance
-                    self.df = self.df.sort_values(by=['distance'])
-                    # reset index
-                    self.df = self.df.reset_index(drop=True)
-                    now = datetime.now()
-                    self.df.to_csv(absolute_path + "/measurementData/data_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".csv", index=False)
-                    self.labelSaved["text"] = "Saved as: data_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".csv"
-                    # if debug is True, load test data from CSV to dataframe
-                    if self.debug == True:
-                        self.df = pd.read_csv(absolute_path + "/testData.csv")
-                    # Create new dataframe with distance from 0 to last distance with 0.0001 steps
-                    x = np.arange(0.0,self.df['distance'].iloc[-1],0.0001) 
-                    df_distance = pd.DataFrame(data = x, columns=["distance"])
-                    df_distance = df_distance.round(4)
-                    # Merge df_distance with self.df on distance
-                    self.df = pd.merge(df_distance, self.df, on='distance', how='left')
-                    # add missing values using ffill
-                    self.df = self.df.fillna(method='ffill')
-
-                    # Calculate from dataframe percentage of laser 1 to 6 where values are 1 
-                    # Count number of rows where laser 1 to 6 is 1
-                    # Divide by total number of rows
-                    # Multiply by 100 to get percentage
-                    laser1Percentage = (self.df['laser1'].sum() / self.df['laser1'].count()) * 100
-                    laser2Percentage = (self.df['laser2'].sum() / self.df['laser2'].count()) * 100
-                    laser3Percentage = (self.df['laser3'].sum() / self.df['laser3'].count()) * 100
-                    laser4Percentage = (self.df['laser4'].sum() / self.df['laser4'].count()) * 100
-                    laser5Percentage = (self.df['laser5'].sum() / self.df['laser5'].count()) * 100
-                    laser6Percentage = (self.df['laser6'].sum() / self.df['laser6'].count()) * 100
-
-                    # Create bar chart with the percentages per laser and save as png
-                    # set size of chart
-                    plt.figure(figsize=(6,4))
-                    plt.bar(["Laser 1", "Laser 2", "Laser 3", "Laser 4", "Laser 5", "Laser 6"], [laser1Percentage, laser2Percentage, laser3Percentage, laser4Percentage, laser5Percentage, laser6Percentage]) 
-                    plt.ylabel("Percentage")
-                    plt.xlabel("Laser")
-                    plt.title('Percentage of laser that is blocked')
-                    plt.savefig(absolute_path + "/measurementData/chart_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".png")
-                    plt.close()
-                    self.chartImage = Image.open(absolute_path + "/measurementData/chart_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".png")
-                    self.chartImage = ImageTk.PhotoImage(self.chartImage)
-                    self.chartImageLabel.configure(image=self.chartImage)
-                    self.chartImageLabel.image = self.chartImage
-                    self.rightFrame.pack_forget()
-                    self.chartFrame.pack(side=tk.RIGHT)
-                    self.activeFrame = "chartFrame"             
-                self.rechthoekKleinLabel2Text["text"] = "Measure"
-        except Exception as e:
-            print("Something went wrong when starting or stopping a measurement..")
-            print(e)
+        if self.measurementActive == False:
+            # If measurement is not active, start measurement
+            if self.activeFrame == "chartFrame":
+                self.chartFrame.pack_forget()
+                self.rightFrame.pack(side=tk.RIGHT)
+                self.activeFrame = "rightFrame"
+            self.arduino.write(b"r")
+            self.lastDistance = "0.000"
+            self.sensorData = [[self.lastLat, self.lastLon,0,0,0,0,0,0,0]]
+            self.measurementActive = True
+            self.rechthoekKleinLabel2Text["text"] = "Stop"
+        else:
+            # If measurement is active, stop measurement
             self.measurementActive = False
-            self.rechthoekKleinLabel2Text["text"] = "Measure"
+            if len(self.sensorData) > 2 or self.debug == True:
+                self.rechthoekKleinLabel2Text["text"] = "Saving..."
+                self.root.update()     
+                self.df = pd.DataFrame(self.sensorData, columns=['lat', 'lon', 'distance', 'laser1', 'laser2', 'laser3', 'laser4', 'laser5', 'laser6'])
+                # make columns lat, lon and distance as float
+                self.df['lat'] = self.df['lat'].astype(float)
+                self.df['lon'] = self.df['lon'].astype(float)
+                self.df['distance'] = self.df['distance'].astype(float)
+                self.df['laser1'] = self.df['laser1'].astype(int)
+                self.df['laser2'] = self.df['laser2'].astype(int)
+                self.df['laser3'] = self.df['laser3'].astype(int)
+                self.df['laser4'] = self.df['laser4'].astype(int)
+                self.df['laser5'] = self.df['laser5'].astype(int)
+                self.df['laser6'] = self.df['laser6'].astype(int)
+                
+                # sort df by distance
+                self.df = self.df.sort_values(by=['distance'])
+                # reset index
+                self.df = self.df.reset_index(drop=True)
+                now = datetime.now()
+                filename = absolute_path + "/measurementData/data_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".csv"
+                print(filename)
+                self.df.to_csv(filename, index=False)
+                self.labelSaved["text"] = "Saved as: data_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".csv"
+                s3Path = os.path.abspath(filename)
+                try:
+                    self.s3_client.upload_file(s3Path, "graslandbucket", os.path.basename(s3Path))
+                except Exception as e:
+                    print ("Uploading failed")
+                    self.labelSaved["text"] = "Saved as: data_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".csv. Upload failed."
 
+                    
+                # if debug is True, load test data from CSV to dataframe
+                # if self.debug == True:
+                #     self.df = pd.read_csv(absolute_path + "/testData.csv")
+                # Create new dataframe with distance from 0 to last distance with 0.0001 steps
+                x = np.arange(0.0,self.df['distance'].iloc[-1],0.0001) 
+                df_distance = pd.DataFrame(data = x, columns=["distance"])
+                df_distance = df_distance.round(4)
+                # Merge df_distance with self.df on distance
+                self.df = pd.merge(df_distance, self.df, on='distance', how='left')
+                # add missing values using ffill
+                self.df = self.df.fillna(method='ffill')
+
+                # Calculate from dataframe percentage of laser 1 to 6 where values are 1 
+                # Count number of rows where laser 1 to 6 is 1
+                # Divide by total number of rows
+                # Multiply by 100 to get percentage
+                laser1Percentage = (self.df['laser1'].sum() / self.df['laser1'].count()) * 100
+                laser2Percentage = (self.df['laser2'].sum() / self.df['laser2'].count()) * 100
+                laser3Percentage = (self.df['laser3'].sum() / self.df['laser3'].count()) * 100
+                laser4Percentage = (self.df['laser4'].sum() / self.df['laser4'].count()) * 100
+                laser5Percentage = (self.df['laser5'].sum() / self.df['laser5'].count()) * 100
+                laser6Percentage = (self.df['laser6'].sum() / self.df['laser6'].count()) * 100
+
+                # Create bar chart with the percentages per laser and save as png
+                # set size of chart
+                plt.figure(figsize=(6,4))
+                plt.bar(["Laser 1", "Laser 2", "Laser 3", "Laser 4", "Laser 5", "Laser 6"], [laser1Percentage, laser2Percentage, laser3Percentage, laser4Percentage, laser5Percentage, laser6Percentage]) 
+                plt.ylabel("Percentage")
+                plt.xlabel("Laser")
+                plt.title('Percentage of laser that is blocked')
+                plt.savefig(absolute_path + "/measurementData/chart_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".png")
+                plt.close()
+                self.chartImage = Image.open(absolute_path + "/measurementData/chart_" + now.strftime("%Y-%m-%d_%H-%M-%S") + ".png")
+                self.chartImage = ImageTk.PhotoImage(self.chartImage)
+                self.chartImageLabel.configure(image=self.chartImage)
+                self.chartImageLabel.image = self.chartImage
+                self.rightFrame.pack_forget()
+                self.chartFrame.pack(side=tk.RIGHT)
+                self.activeFrame = "chartFrame"             
+                self.rechthoekKleinLabel2Text["text"] = "Measure"
     async def readArduino(self):
         while True:
             if (self.arduino.in_waiting > 0):
@@ -299,6 +312,7 @@ class Window(tk.Tk):
                         distance = raw.split(" ")[6].strip()
                         self.lastDistance = distance
                         if self.measurementActive == True:
+                            #Add values as float to sensorData list
                             self.sensorData.append([self.lastLat, self.lastLon, self.lastDistance, data[0], data[1], data[2], data[3], data[4], data[5]])
                 except Exception as e:
                     print("Something went wrong when reading and parsing arduino code")
@@ -317,8 +331,8 @@ class Window(tk.Tk):
                     continue
                 if hasattr(gps, "lat") and hasattr(gps, "lon"):
                     if float(gps.latitude) > 0  and float(gps.longitude) > 0:
-                        self.lastLat = round(float(gps.latitude),4)
-                        self.lastLon = round(float(gps.longitude),4)
+                        self.lastLat = round(float(gps.latitude),6)
+                        self.lastLon = round(float(gps.longitude),6)
                         self.lastGPSFix = datetime.now()
             await asyncio.sleep(0.001)
 
@@ -345,6 +359,6 @@ class Window(tk.Tk):
         for p in ports:
             if p.manufacturer is not None and "u-blox" in p.manufacturer:
                 port = p.device
-        return port
+        return port     
 
 asyncio.run(App().exec())
